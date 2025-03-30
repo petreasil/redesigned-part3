@@ -17,7 +17,7 @@ const SkipCard: React.FC<SkipcardProps> = ({
       key={data?.id}
       onClick={() => handleSizeSelection(data?.id)}
       className={`
-        min-w-[300px] max-w-[300px] h-[200px]
+        
       relative overflow-hidden rounded-xl shadow-lg transform transition-all duration-300
       ${
         selectedSize === data?.id
@@ -27,8 +27,8 @@ const SkipCard: React.FC<SkipcardProps> = ({
       bg-gradient-to-br from-blue-100 to-blue-200 cursor-pointer
     `}
     >
-      {selectedSize === selectedSize && (
-        <div className="absolute top-4 right-4 z-10">
+      {selectedSize === data?.id && (
+        <div className="absolute top-[5px] right-[5px] z-10">
           <div className="bg-blue-500 text-white rounded-full p-1">
             <Check size={24} />
           </div>
@@ -37,9 +37,9 @@ const SkipCard: React.FC<SkipcardProps> = ({
 
       {/* Plan Content */}
       <div className="p-6 relative z-0">
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-4  gap-2">
           <div className="flex items-center space-x-4 flex-wrap">
-            <span className="text-5xl">🚛</span>
+            <span className="text-4xl">🚛</span>
             <div>
               <h2 className="text-xl font-bold text-gray-900">
                 {data?.size} Yard Skip
@@ -56,15 +56,16 @@ const SkipCard: React.FC<SkipcardProps> = ({
 
         {/* Features */}
         <div className="space-y-2 mb-4">
-          {(data?.features || []).map((feature, index) => (
-            <div
-              key={index}
-              className="flex items-center text-gray-700 space-x-2"
-            >
-              <Check size={16} className="text-blue-500" />
-              <span className="text-sm">{feature}</span>
-            </div>
-          ))}
+          <div className="flex items-center text-gray-700 space-x-2">
+            <Check size={16} className="text-blue-500" />
+            <span className="text-sm">{data?.size} Yard Skip</span>
+          </div>
+          <div className="flex items-center text-gray-700 space-x-2">
+            <Check size={16} className="text-blue-500" />
+            <span className="text-sm">
+              {data?.hire_period_days} day hire period
+            </span>
+          </div>
         </div>
 
         {/* Action Button */}
@@ -78,7 +79,7 @@ const SkipCard: React.FC<SkipcardProps> = ({
           }
         `}
         >
-          {selectedSize === data?.id ? "Selected" : "Select Plan"}
+          {selectedSize === data?.id ? "Selected" : "Select This Skip"}
         </button>
       </div>
     </div>
