@@ -19,12 +19,16 @@ export interface WasteType {
 }
 
 const SkipSizeSelector = () => {
+  const chachedSelectedSize = localStorage.getItem("selectedSize");
   const [skipSizes, setSkipSizes] = useState<WasteType[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [selectedSize, setSelectedSize] = useState<number | null>(null);
+  const [selectedSize, setSelectedSize] = useState<number | null>(
+    chachedSelectedSize ? parseInt(chachedSelectedSize) : null
+  );
 
   const handleSizeSelection = (size: number) => {
     setSelectedSize(size);
+    localStorage.setItem("selectedSize", size.toString());
   };
 
   useEffect(() => {

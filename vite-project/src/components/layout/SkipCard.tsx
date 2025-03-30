@@ -1,4 +1,4 @@
-import { Check, Container } from "lucide-react";
+import { Check, Truck } from "lucide-react";
 import { WasteType } from "../skipsize/SkipSizeSelector";
 interface SkipcardProps {
   data: WasteType;
@@ -37,9 +37,9 @@ const SkipCard: React.FC<SkipcardProps> = ({
       {/* Plan Content */}
       <div className="p-6 relative z-0">
         <div className="flex items-center justify-between mb-4  gap-2">
-          <div className="flex items-center space-x-4 flex-wrap">
+          <div className="flex items-center  space-x-4 flex-wrap">
             <span className="text-4xl ">
-              <Container className="text-blue-500 w-12 h-12" />
+              <Truck className="text-blue-600 w-12 h-12" />
             </span>
             <div className="flex flex-col w-full">
               <h2 className="text-xl font-bold text-gray-900">
@@ -51,7 +51,7 @@ const SkipCard: React.FC<SkipcardProps> = ({
             </div>
           </div>
           <div>
-            <div className="text-2xl font-bold text-gray-800">
+            <div className="text-2xl font-bold text-blue-500">
               £{data?.price_before_vat}
             </div>
             <div className="text-2xl font-bold text-gray-800">per week</div>
