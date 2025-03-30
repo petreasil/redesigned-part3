@@ -2,8 +2,8 @@ import { Check, Truck } from "lucide-react";
 import { WasteType } from "../skipsize/SkipSizeSelector";
 interface SkipcardProps {
   data: WasteType;
-  selectedSize: number | null;
-  handleSizeSelection: (size: number) => void;
+  selectedSize: WasteType | null;
+  handleSizeSelection: (data: WasteType | null) => void;
 }
 
 const SkipCard: React.FC<SkipcardProps> = ({
@@ -14,19 +14,18 @@ const SkipCard: React.FC<SkipcardProps> = ({
   return (
     <div
       key={data?.id}
-      onClick={() => handleSizeSelection(data?.id)}
-      className={`
-        
+      onClick={() => handleSizeSelection({ ...data })}
+      className={` 
       relative overflow-hidden rounded-xl shadow-lg transform transition-all duration-300
       ${
-        selectedSize === data?.id
+        selectedSize?.id === data?.id
           ? "scale-105 ring-4 ring-blue-500"
           : "hover:scale-103 hover:shadow-xl"
       }
       bg-gradient-to-br from-blue-100 to-blue-200 cursor-pointer
     `}
     >
-      {selectedSize === data?.id && (
+      {selectedSize?.id === data?.id && (
         <div className="absolute top-[5px] right-[5px] z-10">
           <div className="bg-blue-500 text-white rounded-full p-1">
             <Check size={21} />
@@ -77,13 +76,13 @@ const SkipCard: React.FC<SkipcardProps> = ({
           className={`
           w-full py-3 rounded-lg transition-all
           ${
-            selectedSize === data?.id
+            selectedSize?.id === data?.id
               ? "bg-blue-500 text-white"
               : "bg-white text-gray-800 hover:bg-gray-100"
           }
         `}
         >
-          {selectedSize === data?.id ? "Selected" : "Select This Skip"}
+          {selectedSize?.id === data?.id ? "Selected" : "Select This Skip"}
         </button>
       </div>
     </div>

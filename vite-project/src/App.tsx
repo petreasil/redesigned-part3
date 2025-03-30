@@ -10,21 +10,38 @@ import "./App.css";
 import Layout from "./components/layout/Layout";
 import Stepper from "./components/stepper/Stepper";
 import Step from "./components/stepper/Step";
-import SkipSizeSelector from "./components/skipsize/SkipSizeSelector";
+import SkipSizeSelector, {
+  WasteType,
+} from "./components/skipsize/SkipSizeSelector";
+import { useState } from "react";
 
 function App() {
+  const chachedSelectedSize = localStorage.getItem("selectedSize");
+  const [selectedSize, setSelectedSize] = useState<WasteType | null>(
+    chachedSelectedSize ? JSON.parse(chachedSelectedSize) : null
+  );
   const steps = [
     {
       id: 1,
       label: "Postcode",
       icon: <MapPinHouse />,
-      children: <Step header="Postcode" subheader="" />,
+      children: (
+        <Step
+          header="Postcode"
+          subheader="Select the location that suits your needs"
+        />
+      ),
     },
     {
       id: 2,
       label: "Waste type",
       icon: <Trash2 />,
-      children: <Step header="Waste type" subheader="" />,
+      children: (
+        <Step
+          header="Waste type"
+          subheader="Select the wastetype that suits your needs"
+        />
+      ),
     },
     {
       id: 3,
@@ -34,7 +51,12 @@ function App() {
         <Step
           header="Choose Your Skip Size"
           subheader="Select the skip size that best suits your needs"
-          children={<SkipSizeSelector />}
+          children={
+            <SkipSizeSelector
+              selectedSize={selectedSize}
+              setSelectedSize={setSelectedSize}
+            />
+          }
         />
       ),
     },
@@ -60,7 +82,7 @@ function App() {
   return (
     <>
       <Layout>
-        <Stepper steps={steps} />
+        <Stepper steps={steps} selectedSize={selectedSize} />
       </Layout>
     </>
   );

@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import React from "react";
 import Loader from "../loader/Loader";
+import { WasteType } from "../skipsize/SkipSizeSelector";
 
 type GeneralStepperProps = {
   steps: {
@@ -9,8 +10,9 @@ type GeneralStepperProps = {
     icon: React.ReactElement;
     children: React.ReactNode;
   }[];
+  selectedSize: WasteType | null;
 };
-const Stepper = ({ steps = [] }: GeneralStepperProps) => {
+const Stepper = ({ steps = [], selectedSize }: GeneralStepperProps) => {
   const [activeStep, setActiveStep] = React.useState<number>(0);
   const [isLoadingStep, setIsloadingStep] = React.useState<boolean>(false);
 
@@ -70,7 +72,7 @@ const Stepper = ({ steps = [] }: GeneralStepperProps) => {
       </div>
 
       <div className="sticky bottom-0 w-full flex  flex-col sm:flex-row  items-center justify-between bg-[#1C1C1C] gap-4  border-t border-[#2A2A2A] p-4  z-50">
-        <div>text</div>
+        <div>{selectedSize && `Selected Size: ${selectedSize}`}</div>
         <div className="flex items-center gap-4">
           <button
             type="button"

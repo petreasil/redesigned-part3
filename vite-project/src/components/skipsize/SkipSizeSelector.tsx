@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import SkipCard from "../layout/SkipCard";
 
 export interface WasteType {
@@ -18,17 +18,22 @@ export interface WasteType {
   allows_heavy_waste: boolean;
 }
 
-const SkipSizeSelector = () => {
-  const chachedSelectedSize = localStorage.getItem("selectedSize");
+interface SkipSizeSelectorProps {
+  selectedSize: WasteType | null;
+  setSelectedSize: (data: WasteType | null) => void;
+}
+const SkipSizeSelector: React.FC<SkipSizeSelectorProps> = ({
+  selectedSize,
+  setSelectedSize,
+}) => {
   const [skipSizes, setSkipSizes] = useState<WasteType[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [selectedSize, setSelectedSize] = useState<number | null>(
-    chachedSelectedSize ? parseInt(chachedSelectedSize) : null
-  );
 
-  const handleSizeSelection = (size: number) => {
-    setSelectedSize(size);
-    localStorage.setItem("selectedSize", size.toString());
+  const handleSizeSelection = (data: WasteType | null) => {
+    if (data) {
+      setSelectedSize({ ...data });
+      localStorage.setItem("selectedSize", JSON.stringify({ ...data }));
+    }
   };
 
   useEffect(() => {
