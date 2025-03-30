@@ -1,4 +1,4 @@
-import { Check } from "lucide-react";
+import { Check, Container } from "lucide-react";
 import { WasteType } from "../skipsize/SkipSizeSelector";
 interface SkipcardProps {
   data: WasteType;
@@ -11,7 +11,6 @@ const SkipCard: React.FC<SkipcardProps> = ({
   selectedSize,
   handleSizeSelection,
 }) => {
-  console.log(data);
   return (
     <div
       key={data?.id}
@@ -30,7 +29,7 @@ const SkipCard: React.FC<SkipcardProps> = ({
       {selectedSize === data?.id && (
         <div className="absolute top-[5px] right-[5px] z-10">
           <div className="bg-blue-500 text-white rounded-full p-1">
-            <Check size={24} />
+            <Check size={21} />
           </div>
         </div>
       )}
@@ -39,8 +38,10 @@ const SkipCard: React.FC<SkipcardProps> = ({
       <div className="p-6 relative z-0">
         <div className="flex items-center justify-between mb-4  gap-2">
           <div className="flex items-center space-x-4 flex-wrap">
-            <span className="text-4xl">🚛</span>
-            <div>
+            <span className="text-4xl ">
+              <Container className="text-blue-500 w-12 h-12" />
+            </span>
+            <div className="flex flex-col w-full">
               <h2 className="text-xl font-bold text-gray-900">
                 {data?.size} Yard Skip
               </h2>
@@ -49,8 +50,11 @@ const SkipCard: React.FC<SkipcardProps> = ({
               </p>
             </div>
           </div>
-          <div className="text-2xl font-bold text-gray-800">
-            £{data?.price_before_vat} per week
+          <div>
+            <div className="text-2xl font-bold text-gray-800">
+              £{data?.price_before_vat}
+            </div>
+            <div className="text-2xl font-bold text-gray-800">per week</div>
           </div>
         </div>
 

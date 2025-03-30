@@ -31,20 +31,23 @@ const Stepper = ({ steps = [] }: GeneralStepperProps) => {
 
   return (
     <div className="relative flex flex-col w-full min-h-screen">
-      <div className="flex items-center justify-center gap-4 mb-8 flex-wrap px-2 py-4">
+      <div className="flex items-center justify-center gap-2 mb-8 flex-wrap px-2 py-4">
         {steps.map((step, index) => (
           <>
             <button
               key={step.id}
-              className={`flex items-center justify-center whitespace-nowrap cursor-pointer`}
+              className={`flex items-center justify-center whitespace-nowrap cursor-pointer py-4`}
               onClick={() => setActiveStep(index)}
             >
               {step.icon &&
-                React.cloneElement(step.icon, {
-                  className: `${
-                    index === activeStep ? "text-[#0037C1] " : "text-white"
-                  } w-6 h-6`,
-                })}
+                React.cloneElement(
+                  step.icon as React.ReactElement<{ className: string }>,
+                  {
+                    className: `${
+                      index === activeStep ? "text-[#0037C1] " : "text-white"
+                    } w-6 h-6`,
+                  }
+                )}
               <span
                 className={`${
                   index === activeStep ? "text-[#0037C1] " : "text-white"

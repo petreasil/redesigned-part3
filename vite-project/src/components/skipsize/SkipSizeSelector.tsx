@@ -19,9 +19,9 @@ export interface WasteType {
 }
 
 const SkipSizeSelector = () => {
-  const [skipSizes, setSkipSizes] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [selectedSize, setSelectedSize] = useState(null);
+  const [skipSizes, setSkipSizes] = useState<WasteType[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [selectedSize, setSelectedSize] = useState<number | null>(null);
 
   const handleSizeSelection = (size: number) => {
     setSelectedSize(size);
