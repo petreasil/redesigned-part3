@@ -72,7 +72,10 @@ const Stepper = ({ steps = [], selectedSize }: GeneralStepperProps) => {
       </div>
 
       <div className="sticky bottom-0 w-full flex  flex-col sm:flex-row  items-center justify-between bg-[#1C1C1C] gap-4  border-t border-[#2A2A2A] p-4  z-50">
-        <div>{selectedSize && `Selected Size: ${selectedSize}`}</div>
+        <div className="text-blue-500 font-semibold">
+          {selectedSize &&
+            `£ ${selectedSize?.price_before_vat}--${selectedSize?.hire_period_days} day hire period`}
+        </div>
         <div className="flex items-center gap-4">
           <button
             type="button"
@@ -86,7 +89,7 @@ const Stepper = ({ steps = [], selectedSize }: GeneralStepperProps) => {
           <button
             type="button"
             onClick={handleNext}
-            disabled={activeStep === steps.length - 1}
+            disabled={activeStep === steps.length - 1 || isLoadingStep}
             aria-label="Next Step"
             className="flex items-center gap-2 bg-[#0037C1] hover:bg-[#0037C1/50] cursor-pointer text-white font-[400] py-2 px-4 rounded-md sm:w-full"
           >
