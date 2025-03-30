@@ -65,11 +65,11 @@ const Stepper = ({ steps = [] }: GeneralStepperProps) => {
           </>
         ))}
       </div>
-      <div className="flex-grow px-2 pb-4">
+      <div className="flex-grow px-2 pb-4 relative">
         {isLoadingStep ? <Loader /> : steps[activeStep].children}
       </div>
 
-      <div className="sticky bottom-0 w-full flex items-center justify-between bg-[#1C1C1C] border-t border-[#2A2A2A] p-4  z-50">
+      <div className="sticky bottom-0 w-full flex  flex-col sm:flex-row  items-center justify-between bg-[#1C1C1C] gap-4  border-t border-[#2A2A2A] p-4  z-50">
         <div>text</div>
         <div className="flex items-center gap-4">
           <button
@@ -77,7 +77,7 @@ const Stepper = ({ steps = [] }: GeneralStepperProps) => {
             onClick={handlePrev}
             disabled={activeStep === 0}
             aria-label="Previous Step"
-            className="bg-[#333] hover:bg-[#444] text-white font-[400] py-2 px-4 rounded-md cursor-pointer"
+            className="bg-[#333] hover:bg-[#444] text-white font-[400] py-2 px-4 rounded-md cursor-pointer "
           >
             Back
           </button>
@@ -86,10 +86,10 @@ const Stepper = ({ steps = [] }: GeneralStepperProps) => {
             onClick={handleNext}
             disabled={activeStep === steps.length - 1}
             aria-label="Next Step"
-            className="flex items-center gap-2 bg-[#0037C1] hover:bg-[#0037C1/50] cursor-pointer text-white font-[400] py-2 px-4 rounded-md"
+            className="flex items-center gap-2 bg-[#0037C1] hover:bg-[#0037C1/50] cursor-pointer text-white font-[400] py-2 px-4 rounded-md sm:w-full"
           >
             Continue
-            <ArrowRight name="arrow-right" className="ml-2 w-4 h-4" />
+            <ArrowRight name="arrow-right" className="ml-2 w-4 h-4 " />
           </button>
         </div>
       </div>
